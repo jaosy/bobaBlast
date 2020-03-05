@@ -19,14 +19,16 @@ public class Cannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        foreach(Touch touch in Input.touches) {
+        if (touch.phase == TouchPhase.Began) {
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
 
             RaycastHit hitInfo; 
             if (Physics.Raycast(ray, out hitInfo)) {
                 FireCannonAtPoint(hitInfo.point);
             }
         }    
+        }
     }
 
     private void FireCannonAtPoint(Vector3 point) {
