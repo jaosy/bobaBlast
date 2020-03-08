@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class rotator : MonoBehaviour
 {
+    Transform b;
 
     float x;
     float y;
@@ -23,6 +24,6 @@ public class rotator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
+        b.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
     }
 }
