@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3130,9 +3130,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1388595367}
   - component: {fileID: 1388595366}
-  - component: {fileID: 1388595368}
   - component: {fileID: 1388595370}
   - component: {fileID: 1388595369}
+  - component: {fileID: 1388595368}
   m_Layer: 0
   m_Name: Star
   m_TagString: Star
@@ -3213,7 +3213,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1388595365}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db3adbd69ee94f3f92bea6ba3e9ad3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 954d97d3887666d47a2c55e22fa46ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!65 &1388595369
