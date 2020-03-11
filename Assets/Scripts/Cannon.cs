@@ -22,6 +22,7 @@ public class Cannon : MonoBehaviour
             {
                 FireCannonAtPoint(hitInfo.point);
             }
+            
         }
     }
 
