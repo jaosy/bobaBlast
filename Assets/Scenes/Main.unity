@@ -3590,30 +3590,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485746116}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1591822592 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2213235842496136567, guid: 44d202961243f0048879e51e828a3492,
-    type: 3}
-  m_PrefabInstance: {fileID: 8483052859438594248}
-  m_PrefabAsset: {fileID: 0}
 --- !u!54 &1591822593 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6742089803653427996, guid: 44d202961243f0048879e51e828a3492,
     type: 3}
   m_PrefabInstance: {fileID: 8483052859438594248}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1591822598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1591822592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68d179485a2a44a46a68f697a5c88a12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1605221587
 GameObject:
   m_ObjectHideFlags: 0
@@ -4557,17 +4539,17 @@ PrefabInstance:
     - target: {fileID: 7260770522426842550, guid: 44d202961243f0048879e51e828a3492,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7260770522426842550, guid: 44d202961243f0048879e51e828a3492,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7260770522426842550, guid: 44d202961243f0048879e51e828a3492,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44d202961243f0048879e51e828a3492, type: 3}
