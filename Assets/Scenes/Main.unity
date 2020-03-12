@@ -1033,8 +1033,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c44f86486f249c0a2c41313c24299f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  from: {x: 0, y: 0, z: 135}
-  to: {x: 0, y: 0, z: 225}
+  from: {x: 0, y: 0, z: 100}
+  to: {x: 0, y: 0, z: 250}
   speed: 1
 --- !u!136 &219511753
 CapsuleCollider:
@@ -1123,8 +1123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9240da3b1645a43add80b792cd7ab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bobaPrefab: {fileID: 1591822592}
-  force: 0
+  boba: {fileID: 1591822593}
 --- !u!1 &234708613
 GameObject:
   m_ObjectHideFlags: 0
@@ -3167,8 +3166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c44f86486f249c0a2c41313c24299f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  from: {x: 0, y: 0, z: 135}
-  to: {x: 0, y: 0, z: 225}
+  from: {x: 0, y: 0, z: 100}
+  to: {x: 0, y: 0, z: 250}
   speed: 1
 --- !u!136 &1329905106
 CapsuleCollider:
@@ -3615,10 +3614,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d179485a2a44a46a68f697a5c88a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetObject: {fileID: 2120747175}
-  rigid: {fileID: 0}
-  initialPosition: {x: 0, y: 0, z: 0}
-  initialRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1605221587
 GameObject:
   m_ObjectHideFlags: 0
