@@ -2,37 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* Shooting mechanism for the boba - attached to Top of Straw */
 public class FireBoba : MonoBehaviour
 {
     [SerializeField]
-    public Rigidbody boba;
+    public Rigidbody bobaPrefab; // store the prefab
+    private Rigidbody boba; // instance of boba
     private float angle = 45f;
 
-    /* Start is called before the first frame update 
-     */
+    /* Start is called before the first frame update */
     void Start() {}
 
-    /* Update is called once per frame
-     */
+    /* Update is called once per frame */
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-          
-            // transform.eulerAngles gives the straw's angle of rotation
-            Ray ray = new Ray(transform.position, transform.eulerAngles);
+        // foreach(Touch touch in Input.touches) 
+        // // {
+        // if (touch.phase == TouchPhase.Began) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                
+                boba = Instantiate(bobaPrefab);
+                // transform.eulerAngles gives the straw's angle of rotation
+                Ray ray = new Ray(transform.position, transform.eulerAngles);
 
-            RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo))
-            {
-                shootBoba(hitInfo.point);
+                RaycastHit hitInfo;
+                if (Physics.Raycast(ray, out hitInfo))
+                {
+                    ShootBoba(hitInfo.point);
+                }
             }
 
-        }
+        // }
+        // }
     }
 
-    /* Sets boba velocity and moves the boba
-     */
-    private void shootBoba(Vector3 point)
+    /* Sets boba velocity and moves the boba */
+    private void ShootBoba(Vector3 point)
     {
         var velocity = BallisticVelocity(point, angle);
         Debug.Log("Firing at " + point + " velocity " + velocity); // console debugging
@@ -41,8 +46,7 @@ public class FireBoba : MonoBehaviour
         boba.velocity = velocity;
     }
 
-    /* Calculates the velocity of the boba
-     */
+    /* Calculates the velocity of the boba */
     private Vector3 BallisticVelocity(Vector3 destination, float angle)
     {
         Vector3 dir = destination - transform.position; // get Target Direction
