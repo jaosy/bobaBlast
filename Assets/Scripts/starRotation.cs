@@ -15,8 +15,8 @@ public class starRotation : MonoBehaviour
     void Start()
     {
       x = Random.Range(-3,4);
-      y = 5;
-      z = Random.Range(6,6);
+      y = 4;
+      z = Random.Range(5,5);
       pos = new Vector3(x,y,z);
       transform.position = pos;
     }
