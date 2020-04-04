@@ -10,6 +10,8 @@ public class FireBoba : MonoBehaviour
     public Rigidbody bobaPrefab; // store the prefab
     private Rigidbody boba; // instance of boba
     private float angle = 45f;
+    private float startTime; 
+    private float charge = 0;
 
     int limit = 0;
     /* Start is called before the first frame update */
@@ -18,11 +20,18 @@ public class FireBoba : MonoBehaviour
     /* Update is called once per frame */
     void Update()
     {
-        // foreach(Touch touch in Input.touches) 
+        // foreach(Touch touch in Input.touches)
         // // {
         // if (touch.phase == TouchPhase.Began) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 
+                startTime = Time.time;
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space)) {
+
+                charge = Time.time - startTime;
+
                 boba = Instantiate(bobaPrefab);
                 // transform.eulerAngles gives the straw's angle of rotation
                 Ray ray = new Ray(transform.position, transform.eulerAngles);
@@ -31,22 +40,21 @@ public class FireBoba : MonoBehaviour
                 if (Physics.Raycast(ray, out hitInfo))
                 {
                     ShootBoba(hitInfo.point);
-                limit = limit + 1;
-                }
-            }
-        if(limit > 5)
-        {
-            SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
-        }
+                
 
-        // }
-        // }
+                    ShootBoba(hitInfo.point, charge);
+
+                }
+
+                charge = 0f;
+            }
+       
     }
 
     /* Sets boba velocity and moves the boba */
-    private void ShootBoba(Vector3 point)
+    private void ShootBoba(Vector3 point, float charge)
     {
-        var velocity = BallisticVelocity(point, angle);
+        var velocity = BallisticVelocity(point, angle, charge);
         Debug.Log("Firing at " + point + " velocity " + velocity); // console debugging
 
         boba.transform.position = transform.position;
@@ -54,8 +62,9 @@ public class FireBoba : MonoBehaviour
     }
 
     /* Calculates the velocity of the boba */
-    private Vector3 BallisticVelocity(Vector3 destination, float angle)
+    private Vector3 BallisticVelocity(Vector3 destination, float angle, float charge)
     {
+        Debug.Log("charge: " + charge);
         Vector3 dir = destination - transform.position; // get Target Direction
         float height = dir.y; // get height difference
         dir.y = 0; // retain only the horizontal difference
@@ -64,7 +73,7 @@ public class FireBoba : MonoBehaviour
         dir.y = dist * Mathf.Tan(a); // set dir to the elevation angle.
         dist += height / Mathf.Tan(a); // Correction for small height differences
        
-        float velocity = Mathf.Sqrt(dist * Physics.gravity.magnitude / Mathf.Sin(2 * a));  // Calculate the velocity magnitude
+        float velocity = Mathf.Sqrt(dist * charge * Physics.gravity.magnitude / Mathf.Sin(2 * a));  // Calculate the velocity magnitude
         return velocity * dir.normalized; // Return a normalized vector.
     }
 
