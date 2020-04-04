@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /* Shooting mechanism for the boba - attached to Top of Straw */
 public class FireBoba : MonoBehaviour
@@ -10,6 +11,7 @@ public class FireBoba : MonoBehaviour
     private Rigidbody boba; // instance of boba
     private float angle = 45f;
 
+    int limit = 0;
     /* Start is called before the first frame update */
     void Start() {}
 
@@ -29,8 +31,13 @@ public class FireBoba : MonoBehaviour
                 if (Physics.Raycast(ray, out hitInfo))
                 {
                     ShootBoba(hitInfo.point);
+                limit = limit + 1;
                 }
             }
+        if(limit > 5)
+        {
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
+        }
 
         // }
         // }
