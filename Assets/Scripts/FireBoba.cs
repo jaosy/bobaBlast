@@ -39,7 +39,7 @@ public class FireBoba : MonoBehaviour
                 RaycastHit hitInfo;
                 if (Physics.Raycast(ray, out hitInfo))
                 {
-                    ShootBoba(hitInfo.point);
+                    //ShootBoba(hitInfo.point);
                 
 
                     ShootBoba(hitInfo.point, charge);
@@ -59,7 +59,7 @@ public class FireBoba : MonoBehaviour
 
         boba.transform.position = transform.position;
         boba.velocity = velocity;
-    }
+   }
 
     /* Calculates the velocity of the boba */
     private Vector3 BallisticVelocity(Vector3 destination, float angle, float charge)
