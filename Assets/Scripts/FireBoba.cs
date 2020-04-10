@@ -13,21 +13,20 @@ public class FireBoba : MonoBehaviour
     private float startTime; 
     private float charge = 0;
 
-    int limit = 0;
     /* Start is called before the first frame update */
     void Start() {}
 
     /* Update is called once per frame */
     void Update()
     {
-        // foreach(Touch touch in Input.touches)
-        // // {
-        // if (touch.phase == TouchPhase.Began) {
+        // foreach(Touch touch in Input.touches) {
+            // if (touch.phase == TouchPhase.Began) {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 
                 startTime = Time.time;
             }
 
+            // if (touch.phase == TouchPhase.Ended) {
             if (Input.GetKeyUp(KeyCode.Space)) {
 
                 charge = Time.time - startTime;
@@ -48,12 +47,20 @@ public class FireBoba : MonoBehaviour
 
                 charge = 0f;
             }
-       
+        // }
     }
 
     /* Sets boba velocity and moves the boba */
     private void ShootBoba(Vector3 point, float charge)
     {
+        if (charge < 0.72f) {
+            charge = 0.74f;
+        }
+
+        if (charge > 1.3f) {
+            charge = 1.2f;
+        }
+
         var velocity = BallisticVelocity(point, angle, charge);
         Debug.Log("Firing at " + point + " velocity " + velocity); // console debugging
 
