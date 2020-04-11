@@ -16,27 +16,15 @@ public class bubbleConfig : MonoBehaviour
     {
         float x = -3.8f;
         float y = 6.35f;
-        Vector3 startPos = new Vector3(-3.83f, 7.28f, 6.33f);
-        Vector3 wrapPos = GetComponent<Transform>().position;
-        Vector3 down = Vector3.Cross(startPos, wrapPos).normalized;
-        Vector3 across = new Vector3(1.5f, 1, 1);
-        Vector3 pos = startPos;
+        //float[] zvals = {6.42f, 5.79f, 5.22f, 4.61f};
+        //int z = 0;
+        //float z = 6.64f;
 
-        for (int i = 0; i < 5; ++i)
+        for (int i = 0; i < totalBubbles; ++i)
         {
-
-            GameObject instBubble = Instantiate(bubble, pos, Quaternion.identity);
-            instBubble.GetComponent<bubble>().addStar();
-
-            Debug.Log("Wrap Position: " + wrapPos + "Start Position: " + startPos
-                       + "\nMoved " + (pos.x * across) + " Across and: " + down + " Down to new position:" + pos);
-
-            pos = (pos.x * across) + down;
-            pos = pos.normalized;
-
            
-        }
-
+            GameObject instBubble = Instantiate(bubble, new Vector3(x, y, 6), Quaternion.identity);
+            instBubble.GetComponent<bubble>().addStar();
            // if(Random.Range(0, 100) % 3 == 0)
            // { 
            //  GameObject instStar = Instantiate(star, new Vector3(x, y, 6), Quaternion.identity);
@@ -46,13 +34,13 @@ public class bubbleConfig : MonoBehaviour
            // }
 
             //Updates Position
-            //x += 1.5f;
-            //if(x >= 6.7f)
-            //{
-                //x = -3.8f; 
-               // y -= 1.5f;
-            //}
-        
+            x += 1.5f;
+            if(x >= 6.7f)
+            {
+                x = -3.8f; 
+                y -= 1.5f;
+            }
+        }
     }
 
     // Makes the bubble the parent constraint of the star so that it forms inside it.
