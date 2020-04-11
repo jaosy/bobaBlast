@@ -22,16 +22,17 @@ public class bubbleConfig : MonoBehaviour
 
         for (int i = 0; i < totalBubbles; ++i)
         {
-            
+           
             GameObject instBubble = Instantiate(bubble, new Vector3(x, y, 6), Quaternion.identity);
-            
-            if(Random.Range(0, 100) % 3 == 0)
-            { 
-                GameObject instStar = Instantiate(star, new Vector3(x, y, 6), Quaternion.identity);
-                instBubble.GetComponent<bubble>().star = instStar;
-                setConstraint(instStar, instBubble);
-                instBubble.GetComponent<bubble>().containsStar = true;
-            }
+            instBubble.GetComponent<bubble>().addStar();
+           // if(Random.Range(0, 100) % 3 == 0)
+           // { 
+           //  GameObject instStar = Instantiate(star, new Vector3(x, y, 6), Quaternion.identity);
+           //  instBubble.GetComponent<bubble>().star = instStar;
+           //  setConstraint(instStar, instBubble);
+           //  instBubble.GetComponent<bubble>().containsStar = true;
+           // }
+
             //Updates Position
             x += 1.5f;
             if(x >= 6.7f)
@@ -43,18 +44,18 @@ public class bubbleConfig : MonoBehaviour
     }
 
     // Makes the bubble the parent constraint of the star so that it forms inside it.
-    void setConstraint(GameObject star, GameObject bubble)
-    {
-        ParentConstraint parentsCons = star.GetComponent<ParentConstraint>();
+   // void setConstraint(GameObject star, GameObject bubble)
+    //{
+      //  ParentConstraint parentsCons = star.GetComponent<ParentConstraint>();
         
-        ConstraintSource bubbSource = new ConstraintSource();
-        bubbSource.sourceTransform = bubble.transform;
+       // ConstraintSource bubbSource = new ConstraintSource();
+       // bubbSource.sourceTransform = bubble.transform;
 
-        parentsCons.AddSource(bubbSource);
-        parentsCons.SetTranslationOffset(0, new Vector3(0, 0, 0));
-        parentsCons.weight = 1;
-        parentsCons.locked = true;
-        parentsCons.constraintActive = true;
-    }
+       // parentsCons.AddSource(bubbSource);
+       // parentsCons.SetTranslationOffset(0, new Vector3(0, 0, 0));
+       // parentsCons.weight = 1;
+       // parentsCons.locked = true;
+       // parentsCons.constraintActive = true;
+   // }
 
 }
