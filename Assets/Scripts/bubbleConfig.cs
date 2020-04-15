@@ -8,66 +8,48 @@ public class bubbleConfig : MonoBehaviour
 {
     public GameObject star;
     public GameObject bubble;
-    public int totalBubbles = 28;
 
     // Start is called before the first frame update
     //Set up the bubble sheet w/ bubbles and stars in random places
     void Start()
     {
-        float x = -3.8f;
-        float y = 6.35f;
-        Vector3 startPos = new Vector3(-3.83f, 7.28f, 6.33f);
+        //Starting Values: 
         Vector3 wrapPos = GetComponent<Transform>().position;
-        Vector3 down = Vector3.Cross(startPos, wrapPos).normalized;
-        Vector3 across = new Vector3(1.5f, 1, 1);
-        Vector3 pos = startPos;
+        Vector3 startPos = new Vector3(-3.83f, 7.28f, 6.33f);
 
-        for (int i = 0; i < 5; ++i)
+        //Moving Vectors
+        Vector3 angle = Vector3.Cross(startPos, wrapPos).normalized; // Gives the right depth for the bubble on the sheet
+        Vector3 across = new Vector3(1.5f, 0, 0);
+        Vector3 zeroed = new Vector3(0, 0, 1);
+        Vector3 down = new Vector3(0, -1.5f, 0);
+
+        //Steps
+        Vector3 oldPos; //Keep track of last places bubble
+        Vector3 newPos; //Where to place the next bubble
+
+        Debug.Log("Wrap Position: " + wrapPos + "\tStart Position: " + startPos);
+
+        for (int r = 0; r <= 3; ++r)
         {
+            oldPos = startPos;  //Resets 
+            newPos = oldPos;
+            for (int i = 1; i <= 6; ++i)
+            {
 
-            GameObject instBubble = Instantiate(bubble, pos, Quaternion.identity);
-            instBubble.GetComponent<bubble>().addStar();
+                GameObject instBubble = Instantiate(bubble, newPos, Quaternion.identity);
+                instBubble.GetComponent<bubble>().addStar();
 
-            Debug.Log("Wrap Position: " + wrapPos + "Start Position: " + startPos
-                       + "\nMoved " + (pos.x * across) + " Across and: " + down + " Down to new position:" + pos);
+                newPos = oldPos + across;
 
-            pos = (pos.x * across) + down;
-            pos = pos.normalized;
+                Debug.Log("Moved from: " + oldPos + "to \tNew Position " + newPos
+                          + "\nBy" + across + "Across and: " + down + "Down");
 
-           
+                oldPos = newPos;
+            }
+
+            startPos = startPos + (Vector3.Scale(zeroed, angle)) + down;
         }
 
-           // if(Random.Range(0, 100) % 3 == 0)
-           // { 
-           //  GameObject instStar = Instantiate(star, new Vector3(x, y, 6), Quaternion.identity);
-           //  instBubble.GetComponent<bubble>().star = instStar;
-           //  setConstraint(instStar, instBubble);
-           //  instBubble.GetComponent<bubble>().containsStar = true;
-           // }
-
-            //Updates Position
-            //x += 1.5f;
-            //if(x >= 6.7f)
-            //{
-                //x = -3.8f; 
-               // y -= 1.5f;
-            //}
-        
     }
-
-    // Makes the bubble the parent constraint of the star so that it forms inside it.
-   // void setConstraint(GameObject star, GameObject bubble)
-    //{
-      //  ParentConstraint parentsCons = star.GetComponent<ParentConstraint>();
-        
-       // ConstraintSource bubbSource = new ConstraintSource();
-       // bubbSource.sourceTransform = bubble.transform;
-
-       // parentsCons.AddSource(bubbSource);
-       // parentsCons.SetTranslationOffset(0, new Vector3(0, 0, 0));
-       // parentsCons.weight = 1;
-       // parentsCons.locked = true;
-       // parentsCons.constraintActive = true;
-   // }
-
 }
+
