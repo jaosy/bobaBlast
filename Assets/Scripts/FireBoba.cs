@@ -53,13 +53,17 @@ public class FireBoba : MonoBehaviour
     /* Sets boba velocity and moves the boba */
     private void ShootBoba(Vector3 point, float charge)
     {
-        if (charge < 0.72f) {
-            charge = 0.74f;
+        if (charge <= 0.7f) {
+            charge = 0.71f;
         }
 
         if (charge > 1.3f) {
             charge = 1.2f;
         }
+
+        // if (charge > 1.3f) {
+        //     charge = 1.2f;
+        // }
 
         var velocity = BallisticVelocity(point, angle, charge);
         Debug.Log("Firing at " + point + " velocity " + velocity); // console debugging

@@ -9,10 +9,11 @@ public class bubble : MonoBehaviour
     public bool containsStar;
     private AudioSource poppingSound;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         Debug.Log("Hit!");
-        Destroy(collision.gameObject);
+
+        Destroy(collision);
         if (containsStar)
         {
             Destroy(star);
