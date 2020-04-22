@@ -13,5 +13,16 @@ public class strawMovement : MonoBehaviour
     {
         float t = Mathf.PingPong(Time.time * speed * 1.0f, 1.0f);
         transform.eulerAngles = Vector3.Lerp(from, to, t);
+       
+    }
+
+    private void pause()
+    {
+        Time.timeScale = 0.0f;
+    }
+
+    private void cont()
+    {
+        Time.timeScale = 1.0f;
     }
 }

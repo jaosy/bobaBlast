@@ -7,66 +7,67 @@ using UnityEngine.SceneManagement;
 public class FireBoba : MonoBehaviour
 {
     [SerializeField]
-    public Rigidbody bobaPrefab; // store the prefab
-    private Rigidbody boba; // instance of boba
+    public GameObject bobaPrefab; // store the prefab
+    public GameObject currBoba;
+
+    public bool launched = false;
+    private float maxCharge = 1.3f;
+    private float minCharge = 0.72f;
     private float angle = 45f;
-    private float startTime; 
-    private float charge = 0;
 
     /* Start is called before the first frame update */
-    void Start() {}
+    void Start()
+    {
+    }
 
     /* Update is called once per frame */
     void Update()
     {
+        float startTime = 0;
+
         // foreach(Touch touch in Input.touches) {
-            // if (touch.phase == TouchPhase.Began) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
-                
-                startTime = Time.time;
-            }
+        // if (touch.phase == TouchPhase.Began) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            launched = false;
+            startTime = Time.time;
+        }
 
-            // if (touch.phase == TouchPhase.Ended) {
-            if (Input.GetKeyUp(KeyCode.Space)) {
+        // if (touch.phase == TouchPhase.Ended) {
+        if (Input.GetKeyUp(KeyCode.Space)) { 
 
-                charge = Time.time - startTime;
-
-                boba = Instantiate(bobaPrefab);
-                // transform.eulerAngles gives the straw's angle of rotation
-                Ray ray = new Ray(transform.position, transform.eulerAngles);
-
-                RaycastHit hitInfo;
-                if (Physics.Raycast(ray, out hitInfo))
-                {
-                    //ShootBoba(hitInfo.point);
-                
-
-                    ShootBoba(hitInfo.point, charge);
-
-                }
-
-                charge = 0f;
-            }
+            float endTime = Time.time;
+            float charge = calculateCharge(endTime, startTime);
+            arcDirection(charge);
+         }
         // }
     }
 
     /* Sets boba velocity and moves the boba */
-    private void ShootBoba(Vector3 point, float charge)
+    private void ShootBoba(Vector3 point, float charge, Collider hit)
     {
-        if (charge < 0.72f) {
-            charge = 0.74f;
-        }
-
-        if (charge > 1.3f) {
-            charge = 1.2f;
-        }
+        currBoba = Instantiate(bobaPrefab);
+        currBoba.GetComponent<bobaBall>().setHit(hit);
 
         var velocity = BallisticVelocity(point, angle, charge);
         Debug.Log("Firing at " + point + " velocity " + velocity); // console debugging
+        Rigidbody bobaRig = currBoba.GetComponent<Rigidbody>();
+        bobaRig.transform.position = transform.position;
+        bobaRig.velocity = velocity;
 
-        boba.transform.position = transform.position;
-        boba.velocity = velocity;
+        launched = true;
    }
+
+    private void arcDirection(float charge)
+    {
+        // transform.eulerAngles gives the straw's angle of rotation
+        Ray ray = new Ray(transform.position, transform.eulerAngles);
+
+        RaycastHit hitInfo;
+       if (Physics.Raycast(ray, out hitInfo))
+        {
+           ShootBoba(hitInfo.point, charge, hitInfo.collider);
+        }
+    }
 
     /* Calculates the velocity of the boba */
     private Vector3 BallisticVelocity(Vector3 destination, float angle, float charge)
@@ -83,5 +84,24 @@ public class FireBoba : MonoBehaviour
         float velocity = Mathf.Sqrt(dist * charge * Physics.gravity.magnitude / Mathf.Sin(2 * a));  // Calculate the velocity magnitude
         return velocity * dir.normalized; // Return a normalized vector.
     }
+    private float calculateCharge(float end, float start)
+    {
+        float charge = end - start;
+        if (charge < minCharge)
+        {
+            charge = 0.74f;
+        }
 
+        if (charge > maxCharge)
+        {
+            charge = 1.2f;
+        }
+
+        return charge;
+    }
+
+    public GameObject getCurrBall()
+    {
+        return currBoba;
+    }
 }
