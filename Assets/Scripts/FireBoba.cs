@@ -9,34 +9,44 @@ public class FireBoba : MonoBehaviour
     [SerializeField]
     public GameObject bobaPrefab; // store the prefab
     public GameObject currBoba;
-
+    public Rigidbody chargeMeter;
+    
     public bool launched = false;
-    private float maxCharge = 1.3f;
-    private float minCharge = 0.72f;
+    private float maxCharge = 1.6f;
+    private float minCharge = 0.79f;
     private float angle = 45f;
+    private float startTime;
+    private float charge;
+    private float progress;
+    private Vector3 initialScale;
+    private Vector3 finalScale;
+   
 
     /* Start is called before the first frame update */
     void Start()
     {
+        initialScale = new Vector3(2f, 0.1f, 2f);
+        finalScale = new Vector3(2f, 0.9f, 2f);
+        chargeMeter.transform.localScale = initialScale;
     }
 
     /* Update is called once per frame */
     void Update()
     {
-        float startTime = 0;
+        // float startTime = 0;
 
         // foreach(Touch touch in Input.touches) {
         // if (touch.phase == TouchPhase.Began) {
         if (Input.GetKeyDown(KeyCode.Space)) {
             launched = false;
             startTime = Time.time;
+            StartCoroutine("ChargeTeaUp");
         }
 
         // if (touch.phase == TouchPhase.Ended) {
         if (Input.GetKeyUp(KeyCode.Space)) { 
-
-            float endTime = Time.time;
-            float charge = calculateCharge(endTime, startTime);
+            StopCoroutine("ChargeTeaUp");
+            charge = calculateCharge(Time.time, startTime);
             arcDirection(charge);
          }
         // }
@@ -46,7 +56,7 @@ public class FireBoba : MonoBehaviour
     private void ShootBoba(Vector3 point, float charge, Collider hit)
     {
         currBoba = Instantiate(bobaPrefab);
-        currBoba.GetComponent<bobaBall>().setHit(hit);
+        //currBoba.GetComponent<bobaBall>().setHit(hit);
 
         var velocity = BallisticVelocity(point, angle, charge);
         Debug.Log("Firing at " + point + " velocity " + velocity); // console debugging
@@ -89,17 +99,26 @@ public class FireBoba : MonoBehaviour
         float charge = end - start;
         if (charge < minCharge)
         {
-            charge = 0.74f;
+            charge = 0.80f;
         }
 
         if (charge > maxCharge)
         {
-            charge = 1.2f;
+            charge = 1.4f;
         }
 
         return charge;
     }
 
+    IEnumerator ChargeTeaUp() {
+        progress = 0;
+        while (progress <= 1) {
+            chargeMeter.transform.localScale = Vector3.Lerp(initialScale, finalScale, progress);
+            progress += Time.deltaTime * 0.5f;
+            yield return null;
+        }
+    }
+    
     public GameObject getCurrBall()
     {
         return currBoba;
