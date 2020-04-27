@@ -24,7 +24,7 @@ public class bubble : MonoBehaviour
         //To Do: Play Popping Noise
         if (!popped) //To Do: Make it Look Like its been popped 
         {
-            GetComponent<Transform>().position = GetComponent<Transform>().position + Vector3.back;
+            GetComponent<Transform>().position += Vector3.forward;
         }
         popped = true;
         //To do: Work on reforming
