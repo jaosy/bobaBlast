@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1878,6 +1878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa40d7680838e049b65a6efaeaf82c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubbleSpacing: 1.1
   star: {fileID: 1388595365}
   bubble: {fileID: 1326865922}
 --- !u!65 &530173824
@@ -1948,7 +1949,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 530173822}
   m_LocalRotation: {x: -0.57164854, y: -0, z: -0, w: 0.8204986}
-  m_LocalPosition: {x: 0, y: 4.55, z: 6.3}
+  m_LocalPosition: {x: 0, y: 4.81, z: 5.55}
   m_LocalScale: {x: 9, y: 0.2, z: 6.2999997}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4943,6 +4944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa40d7680838e049b65a6efaeaf82c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubbleSpacing: 1.1
   star: {fileID: 1388595365}
   bubble: {fileID: 1326865922}
 --- !u!1001 &1555675140639881385

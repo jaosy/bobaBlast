@@ -12,6 +12,10 @@ public class bubble : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Hit!");
+        if(collision.gameObject.tag != "Boba")
+        {
+            return;
+        }
         Destroy(collision.gameObject);
         if (containsStar)
         {

@@ -6,6 +6,7 @@ using UnityEngine.Animations;
 
 public class bubbleConfig : MonoBehaviour
 {
+    public float bubbleSpacing = 1.1f;
     public GameObject star;
     public GameObject bubble;
 
@@ -19,21 +20,21 @@ public class bubbleConfig : MonoBehaviour
 
         //Moving Vectors
         Vector3 angle = Vector3.Cross(rowStart, wrapPos).normalized; // Gives the right depth for the bubble on the sheet
-        Vector3 stepAcross = new Vector3(1.5f, 0, 0);
+        Vector3 stepAcross = new Vector3(bubbleSpacing, 0, 0);
         Vector3 zeroed = new Vector3(0, 0, 1); 
-        Vector3 stepDown = Vector3.Scale(zeroed, angle) + new Vector3(0, -1.5f, 0);
+        Vector3 stepDown = (Vector3.Scale(zeroed, angle) + new Vector3(0, -bubbleSpacing, 0)) * Mathf.Sqrt(0.75f);
 
         //Steps 
         Vector3 currPos; //Where to place the next bubble
 
         Debug.Log("Wrap Position: " + wrapPos + "\tStart Position: " + rowStart);
 
-        for (int row = 0; row <= 3; ++row)
+        for (int row = 0; row <= 5; ++row)
         {
-            currPos = rowStart;
-            for (int col = 1; col <= 6; ++col)
+            currPos = rowStart + stepAcross * 0.5f * (row % 2);
+            for (int col = row % 2; col <= 7; ++col)
             {
-
+               
                 GameObject instBubble = Instantiate(bubble, currPos, Quaternion.identity);
                 instBubble.GetComponent<bubble>().addStar();
 
