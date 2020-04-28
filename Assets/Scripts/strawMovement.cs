@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class strawMovement : MonoBehaviour
 {
-    public Vector3 from = new Vector3(0f, 0f, 100f);
-    public Vector3 to = new Vector3(0f, 0f, 255f);
+    public Vector3 from;
+    public Vector3 to;
     public float speed = 1.0f;
 
     // Update is called once per frame
     void Update()
     {
-        float t = Mathf.PingPong(Time.time * speed * 1.0f, 1.0f);
+        float t = Mathf.PingPong(Time.time * 0.8f, 0.9f);
         transform.eulerAngles = Vector3.Lerp(from, to, t);
        
     }

@@ -12,6 +12,8 @@ public class FireBoba : MonoBehaviour
     public Rigidbody chargeMeter;
     
     public bool launched = false;
+    
+    // public float shootingForce = 275f; 
     private float maxCharge = 1.6f;
     private float minCharge = 0.79f;
     private float angle = 45f;
@@ -20,6 +22,11 @@ public class FireBoba : MonoBehaviour
     private float progress;
     private Vector3 initialScale;
     private Vector3 finalScale;
+    // private Vector3 forwardHalved;
+    // private Vector3 upHalved;
+    // private Vector3 bobaDirection;
+    // private Vector3 bobaYZDirection; 
+    public Camera cam;
    
 
     /* Start is called before the first frame update */
@@ -56,7 +63,17 @@ public class FireBoba : MonoBehaviour
     private void ShootBoba(Vector3 point, float charge, Collider hit)
     {
         currBoba = Instantiate(bobaPrefab);
-        //currBoba.GetComponent<bobaBall>().setHit(hit);
+        // currBoba.transform.position = transform.position;
+        // currBoba.GetComponent<bobaBall>().setHit(hit);
+        
+        // Rigidbody bobaRig = currBoba.GetComponent<Rigidbody>();
+        // bobaRig.transform.position = transform.position;
+        // bobaRig.useGravity = true;
+        // forwardHalved = Vector3.Scale(currBoba.transform.forward, new Vector3(0.1f, 0.1f, 0.1f));
+        // upHalved = Vector3.Scale(currBoba.transform.up, new Vector3(0.8f, 0.8f, 0.8f));
+        // bobaDirection = forwardHalved + upHalved;
+        // bobaYZDirection = new Vector3(0f, -1*transform.position.y, -1*transform.position.z);
+        // bobaRig.AddForce((cam.transform.up + cam.transform.forward) * shootingForce);
 
         var velocity = BallisticVelocity(point, angle, charge);
         Debug.Log("Firing at " + point + " velocity " + velocity); // console debugging
@@ -83,7 +100,8 @@ public class FireBoba : MonoBehaviour
     private Vector3 BallisticVelocity(Vector3 destination, float angle, float charge)
     {
         Debug.Log("charge: " + charge);
-        Vector3 dir = destination - transform.position; // get Target Direction
+        //Vector3 dir = destination - transform.position + transform.forward; // get Target Direction
+        Vector3 dir = destination + cam.transform.up + cam.transform.forward;
         float height = dir.y; // get height difference
         dir.y = 0; // retain only the horizontal difference
         float dist = dir.magnitude; // get horizontal direction
@@ -99,7 +117,7 @@ public class FireBoba : MonoBehaviour
         float charge = end - start;
         if (charge < minCharge)
         {
-            charge = 0.80f;
+            charge = 0.70f;
         }
 
         if (charge > maxCharge)
@@ -107,7 +125,7 @@ public class FireBoba : MonoBehaviour
             charge = 1.4f;
         }
 
-        return charge;
+        return charge*1.5f;
     }
 
     IEnumerator ChargeTeaUp() {
