@@ -27,7 +27,10 @@ public class bubble : MonoBehaviour
         {
             GetComponent<Transform>().position += Vector3.forward;
             popped = true;
+            //addStar();
             StartCoroutine("reform");
+            addStar();
+
         }
     }
 
@@ -57,6 +60,7 @@ public class bubble : MonoBehaviour
     IEnumerator reform() {
         yield return new WaitForSeconds(10f);
         GetComponent<Transform>().position -= Vector3.forward;
+        star.GetComponent<Transform>().position -= Vector3.forward;
         popped = false;
     }
 

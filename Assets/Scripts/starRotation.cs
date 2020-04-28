@@ -14,11 +14,11 @@ public class starRotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      x = Random.Range(-3,4);
-      y = 4;
-      z = Random.Range(5,5);
-      pos = new Vector3(x,y,z);
-      transform.position = pos;
+      //x = Random.Range(-3,4);
+      //y = 4;
+      //z = Random.Range(5,5);
+      //pos = new Vector3(x,y,z);
+      //transform.position = pos;
     }
 
     // Update is called once per frame
