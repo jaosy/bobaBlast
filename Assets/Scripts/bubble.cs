@@ -8,6 +8,7 @@ public class bubble : MonoBehaviour
     public bool popped = false; 
     public bool containsStar;
     private AudioSource poppingSound;
+    private float timeLeft = 3f;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -25,9 +26,9 @@ public class bubble : MonoBehaviour
         if (!popped) //To Do: Make it Look Like its been popped 
         {
             GetComponent<Transform>().position += Vector3.forward;
+            popped = true;
+            StartCoroutine("reform");
         }
-        popped = true;
-        //To do: Work on reforming
     }
 
     //Method that randomly determines if a star should be added. If so, includes star 
@@ -51,10 +52,12 @@ public class bubble : MonoBehaviour
     {
 
     }
-    //Once the bubble pops, essentially starts a timer for it to be reformed again 
-    private void beginReform()
-    {
 
+    //Once the bubble pops, essentially starts a timer for it to be reformed again 
+    IEnumerator reform() {
+        yield return new WaitForSeconds(10f);
+        GetComponent<Transform>().position -= Vector3.forward;
+        popped = false;
     }
 
 }
