@@ -5,10 +5,10 @@ using UnityEngine;
 public class bubble : MonoBehaviour
 {
     public GameObject star;
+    private GameObject instStar;
     public bool popped = false; 
     public bool containsStar;
     private AudioSource poppingSound;
-    private float timeLeft = 3f;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -20,16 +20,14 @@ public class bubble : MonoBehaviour
         Destroy(collision.gameObject);
         if (containsStar)
         {
-            Destroy(star);
+            Destroy(instStar);
         }
         //To Do: Play Popping Noise
-        if (!popped) //To Do: Make it Look Like its been popped 
+        if (!popped)
         {
             GetComponent<Transform>().position += Vector3.forward;
             popped = true;
-            //addStar();
             StartCoroutine("reform");
-            addStar();
 
         }
     }
@@ -40,9 +38,9 @@ public class bubble : MonoBehaviour
         Vector3 pos = GetComponent<Transform>().position;
         if (Random.Range(0, 100) % 3 == 0)
         {
-            star = Instantiate(star, pos, Quaternion.identity);
+            instStar = Instantiate(star, pos, Quaternion.identity);
             containsStar = true;
-            star.GetComponent<starBehav>().setConstraint(gameObject); // Makes the bubble its parent constraint
+            instStar.GetComponent<starBehav>().setConstraint(gameObject); // Makes the bubble its parent constraint
         }
         else
         {
@@ -56,12 +54,12 @@ public class bubble : MonoBehaviour
 
     }
 
-    //Once the bubble pops, essentially starts a timer for it to be reformed again 
+    //Once the bubble pops, reforms after 3 seconds and calls method to randomly add a star
     IEnumerator reform() {
         yield return new WaitForSeconds(10f);
         GetComponent<Transform>().position -= Vector3.forward;
-        star.GetComponent<Transform>().position -= Vector3.forward;
         popped = false;
+        addStar();
     }
 
 }
