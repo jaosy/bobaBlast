@@ -8,6 +8,7 @@ TagManager:
   - Star
   - Wall
   - Boba
+  - Label
   layers:
   - Default
   - TransparentFX
