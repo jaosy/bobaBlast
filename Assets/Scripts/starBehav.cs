@@ -5,8 +5,10 @@ using UnityEngine.Animations;
 
 public class starBehav : MonoBehaviour
 {
-    ParentConstraint parentsCons;
-    ConstraintSource bubbSource = new ConstraintSource();
+
+    private ParentConstraint parentsCons;
+    private ConstraintSource bubbSource = new ConstraintSource();
+
     public void setConstraint(GameObject bubble)
     {
        parentsCons = GetComponent<ParentConstraint>();

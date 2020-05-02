@@ -4,25 +4,42 @@ using UnityEngine;
 
 public class bobaBall : MonoBehaviour
 {
-    private AudioSource source; 
+    
+    private AudioSource source;
+    private bool launched;
+    private GameObject hitObj;
 
     /* Destroys Bubble, Star and Boba upon collision.
      * plays sound effect */
-    private void OnTriggerEnter(Collider other)
+
+    public void Start()
     {
+        launched = false;
+        hitObj = null;
+    }
 
-        if (other.gameObject.CompareTag("Bubble"))
+    public void Update()
+    {
+        if (launched)
         {
-            PlaySound();
-            other.gameObject.SetActive(false);
-            Destroy(gameObject);
+            if(hitObj != null)
+            {
+                Debug.Log("Oh! I Just hit something!: " + hitObj.tag);
+               // PlaySound();
+            }
+            else
+            {
+                Debug.Log("lol this shit empty.");
+            }
+            
         }
+    }
 
-        if (other.gameObject.CompareTag("Star"))
-        {
-            PlaySound();
-            other.gameObject.SetActive(false);
-        }
+    public void beenLaunched(GameObject obj)
+    {
+        launched = true;
+        hitObj = obj;
+
     }
 
     /* Sets up audio*/

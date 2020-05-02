@@ -10,28 +10,27 @@ public class bubble : MonoBehaviour
     public bool popped = false; 
     public bool containsStar;
     private AudioSource poppingSound;
-
-    private void OnCollisionEnter(Collision collision)
+    
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hit!");
-        if(collision.gameObject.tag != "Boba")
+        Debug.Log("Oh no! I was just hit! " + other.gameObject.tag);
+        if (other.gameObject.CompareTag("Boba"))
         {
-            return;
+            other.GetComponent<bobaBall>().beenLaunched(gameObject);
         }
-        Destroy(collision.gameObject);
+  
         if (containsStar)
         {
-            GameObject instPickUp = Instantiate(pickUpEffect, GetComponent<Transform>().position, Quaternion.identity);
-            instPickUp.GetComponent<ParticleSystem> ().Play();
+            //GameObject instPickUp = Instantiate(pickUpEffect, GetComponent<Transform>().position, Quaternion.identity);
+            //instPickUp.GetComponent<ParticleSystem> ().Play();
             Destroy(instStar);
         }
         //To Do: Play Popping Noise
-        if (!popped)
+        if (popped == false)
         {
             GetComponent<Transform>().position += Vector3.forward;
             popped = true;
             StartCoroutine("reform");
-
         }
     }
 

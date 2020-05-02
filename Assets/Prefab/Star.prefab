@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8979697252743092222}
   - component: {fileID: 8979697252743092223}
   - component: {fileID: 8979697252743092220}
+  - component: {fileID: 8247282553627635272}
   m_Layer: 0
   m_Name: Star
   m_TagString: Star
@@ -109,7 +110,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8979697252743092210}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 0}
@@ -152,3 +153,15 @@ ParentConstraint:
   m_Sources:
   - sourceTransform: {fileID: 0}
     weight: 1
+--- !u!114 &8247282553627635272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8979697252743092210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf2f34dd0bf37d4382e22edf484b9a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

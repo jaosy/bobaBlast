@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CollideWall : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision) {
+    private void OnTriggerEnter(Collider collision) {
+
         if (collision.gameObject.CompareTag("Boba")) {
-            Debug.Log("oops"); // change this to subtract points, obv
-            Destroy(collision.gameObject);
+            Debug.Log("oops, looks like you hit a wall!"); // change this to subtract points, obv
+            collision.gameObject.GetComponent<bobaBall>().beenLaunched(this.gameObject);
         }
     }
 }
