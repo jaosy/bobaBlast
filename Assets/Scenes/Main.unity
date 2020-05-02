@@ -245,10 +245,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bobaPrefab: {fileID: 273755234}
-  currBoba: {fileID: 0}
   chargeMeter: {fileID: 391956268}
-  launched: 0
+  ready: 0
   cam: {fileID: 427294786}
+  fired: 0
 --- !u!1 &273755234 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2213235842496136567, guid: 44d202961243f0048879e51e828a3492,
@@ -1599,6 +1599,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e52086f82a92e408998143b42a3aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bobaFab: {fileID: 273755234}
+  lives: {fileID: 1994133184}
+  score: {fileID: 1913624518}
 --- !u!4 &1391920892
 Transform:
   m_ObjectHideFlags: 0
@@ -1943,7 +1946,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: f2dcf029949142e28b974630369c8b4e, type: 2}
@@ -2012,13 +2015,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1913624518}
-    characterCount: 1
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -2098,7 +2101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: f2dcf029949142e28b974630369c8b4e, type: 2}
@@ -2167,13 +2170,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1994133184}
-    characterCount: 2
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0

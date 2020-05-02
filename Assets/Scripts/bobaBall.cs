@@ -6,8 +6,8 @@ public class bobaBall : MonoBehaviour
 {
     
     private AudioSource source;
-    private bool launched;
-    private GameObject hitObj;
+    public bool launched;
+    public GameObject hitObj;
 
     /* Destroys Bubble, Star and Boba upon collision.
      * plays sound effect */
@@ -26,10 +26,6 @@ public class bobaBall : MonoBehaviour
             {
                 Debug.Log("Oh! I Just hit something!: " + hitObj.tag);
                // PlaySound();
-            }
-            else
-            {
-                Debug.Log("lol this shit empty.");
             }
             
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class bubble : MonoBehaviour
 {
-    public GameObject pickUpEffect;
+    //public GameObject pickUpEffect;
     public GameObject star;
     private GameObject instStar;
     public bool popped = false; 
