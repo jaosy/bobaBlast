@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
-
 public class gameManger : MonoBehaviour
 {
     public GameObject bobaFab;
@@ -20,6 +20,8 @@ public class gameManger : MonoBehaviour
     //Game Continutation:
     bool chargeBegan;
     private bool gameOver;
+    public GameObject gameOverScr;
+    public Button playAgainbtn;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,8 @@ public class gameManger : MonoBehaviour
         currBoba = Instantiate(bobaFab);
         chargeBegan = false;
 
+        gameOverScr.SetActive(false);
+        playAgainbtn = gameOverScr.GetComponentInChildren<Button>();
         gameOver = false;
     }
 
@@ -113,7 +117,22 @@ public class gameManger : MonoBehaviour
         {
             gameOver = true;
             Time.timeScale = 0;
+            gameOverScr.SetActive(true);
+            playAgainbtn.onClick.AddListener(resetGame);
             Debug.Log("Game Over");
         }
+    }
+
+    private void resetGame()
+    {
+        gameLives = 10;
+        lives.SetText(gameLives.ToString());
+        gameScore = 0;
+        score.SetText(gameScore.ToString());
+
+        gameOver = false;
+        Time.timeScale = 1;
+
+        gameOverScr.SetActive(false);
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Boba
   - Label
+  - Play Button
   layers:
   - Default
   - TransparentFX
