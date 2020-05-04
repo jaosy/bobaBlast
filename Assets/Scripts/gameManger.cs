@@ -10,6 +10,7 @@ public class gameManger : MonoBehaviour
 
     private GameObject straw;
     private FireBoba fire;
+    private float startTime;
 
     //Scoring Variables
     public TextMeshProUGUI lives;
@@ -43,7 +44,7 @@ public class gameManger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float startTime = 0;
+        // float startTime = 0;
         // foreach(Touch touch in Input.touches) {
         // if (touch.phase == TouchPhase.Began) {
         if (Input.GetKeyDown(KeyCode.Space))

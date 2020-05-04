@@ -12,8 +12,8 @@ public class FireBoba : MonoBehaviour
     
     //Charging Parameters
     // public float shootingForce = 275f; 
-    private float maxCharge = 1.6f;
-    private float minCharge = 0.79f;
+    private float maxCharge = 1.80f;
+    private float minCharge = 1.06f;
     private float angle = 45f;
     private float charge;
     //Charging Visuals
@@ -75,9 +75,10 @@ public class FireBoba : MonoBehaviour
     /* Calculates the velocity of the boba */
     private Vector3 BallisticVelocity(Vector3 destination, float angle)
     {
-        //Debug.Log("charge: " + charge);
-        //Vector3 dir = destination - transform.position + transform.forward; // get Target Direction
-        Vector3 dir = destination + cam.transform.up + cam.transform.forward;
+        Vector3 dir = destination + cam.transform.up + cam.transform.forward; // get target direction
+        if (dir.z < 0) {
+            dir.z = Mathf.Abs(dir.z);
+        }
         float height = dir.y; // get height difference
         dir.y = 0; // retain only the horizontal difference
         float dist = dir.magnitude; // get horizontal direction
@@ -88,19 +89,17 @@ public class FireBoba : MonoBehaviour
         float velocity = Mathf.Sqrt(dist * charge * Physics.gravity.magnitude / Mathf.Sin(2 * a));  // Calculate the velocity magnitude
         return velocity * dir.normalized; // Return a normalized vector.
     }
+    
     public void calculateCharge(float end, float start)
     {
         charge = end - start;
-        if (charge < minCharge)
-        {
-            charge = 0.70f;
-        }
 
-        if (charge > maxCharge)
-        {
-            charge = 1.4f;
+        if (charge < minCharge) {
+            charge = minCharge;
         }
-
+        if (charge > maxCharge) {
+            charge = maxCharge;
+        }
     }
 
     IEnumerator ChargeTeaUp() {
