@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class bubble : MonoBehaviour
 {
-    //public GameObject pickUpEffect;
+    public GameObject pickUpEffect;
     public GameObject star;
     private GameObject instStar;
     public bool popped = false; 
@@ -21,8 +21,8 @@ public class bubble : MonoBehaviour
   
         if (containsStar)
         {
-            //GameObject instPickUp = Instantiate(pickUpEffect, GetComponent<Transform>().position, Quaternion.identity);
-            //instPickUp.GetComponent<ParticleSystem> ().Play();
+            GameObject instPickUp = Instantiate(pickUpEffect, GetComponent<Transform>().position, Quaternion.identity);
+            instPickUp.GetComponent<ParticleSystem> ().Play();
             Destroy(instStar);
         }
         //To Do: Play Popping Noise

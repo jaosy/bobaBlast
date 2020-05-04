@@ -31,7 +31,7 @@ public class FireBoba : MonoBehaviour
         currBoba = null;
         fired = false;
         initialScale = new Vector3(2f, 0.1f, 2f);
-        finalScale = new Vector3(2f, 0.9f, 2f);
+        finalScale = new Vector3(2f, 5f, 2f);
         chargeMeter.transform.localScale = initialScale;
     }
 
@@ -106,7 +106,7 @@ public class FireBoba : MonoBehaviour
         progress = 0;
         while (progress <= 1) {
             chargeMeter.transform.localScale = Vector3.Lerp(initialScale, finalScale, progress);
-            progress += Time.deltaTime * 0.5f;
+            progress += Time.deltaTime * 0.4f;
             yield return null;
         }
     }
