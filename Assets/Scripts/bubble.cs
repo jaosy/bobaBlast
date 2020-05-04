@@ -10,6 +10,10 @@ public class bubble : MonoBehaviour
     public bool popped = false; 
     public bool containsStar;
     private AudioSource poppingSound;
+
+    void Start() {
+        poppingSound = GetComponent<AudioSource>();
+    }
     
     private void OnTriggerEnter(Collider other)
     {
@@ -30,6 +34,7 @@ public class bubble : MonoBehaviour
         {
             GetComponent<Transform>().position += Vector3.forward;
             popped = true;
+            playPop();
             StartCoroutine("reform");
         }
     }
@@ -53,7 +58,7 @@ public class bubble : MonoBehaviour
     //Plays the Popping noise when the bubble is hit
     private void playPop()
     {
-
+        poppingSound.Play();
     }
 
     //Once the bubble pops, reforms after 3 seconds and calls method to randomly add a star
