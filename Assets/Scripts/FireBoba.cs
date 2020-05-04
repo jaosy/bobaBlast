@@ -7,20 +7,21 @@ using UnityEngine.SceneManagement;
 public class FireBoba : MonoBehaviour
 {
     [SerializeField]
-    public GameObject bobaPrefab; // store the prefab
+    public GameObject bobaPrefab; 
     public Rigidbody chargeMeter;
     
     //Charging Parameters
-    // public float shootingForce = 275f; 
     private float maxCharge = 1.80f;
     private float minCharge = 1.06f;
     private float angle = 45f;
     private float charge;
+
     //Charging Visuals
     private float progress;
     private Vector3 initialScale;
     private Vector3 finalScale; 
     public Camera cam;
+
     //Current Game Variables
     private GameObject currBoba;
     public bool fired;
@@ -43,26 +44,18 @@ public class FireBoba : MonoBehaviour
             fired = false;
         } 
     }
+
+    /* Transfer control from GameManager.cs script to boba shooting */
     public void Shoot(GameObject ball)
     {
         currBoba = ball;
         arcDirection();
         fired = true;
     }
-    /* Sets boba velocity and moves the boba */
-    private void ShootBoba(Vector3 point)
-    {
-        var velocity = BallisticVelocity(point, angle);
-        //Debug.Log("Firing at " + point + " velocity " + velocity); // console debugging
-        Rigidbody bobaRig = currBoba.GetComponent<Rigidbody>();
-        bobaRig.transform.position = transform.position;
-        bobaRig.velocity = velocity;
 
-   }
-
+    /* Casts a ray that determines the boba's trajectory */
     private void arcDirection()
     {
-        // transform.eulerAngles gives the straw's angle of rotation
         Ray ray = new Ray(transform.position, transform.eulerAngles);
 
         RaycastHit hitInfo;
@@ -72,7 +65,20 @@ public class FireBoba : MonoBehaviour
         }
     }
 
-    /* Calculates the velocity of the boba */
+     /* Sets boba velocity and moves the boba */
+    private void ShootBoba(Vector3 point)
+    {
+        var velocity = BallisticVelocity(point, angle);
+        // Debug.Log("Firing at " + point + " velocity " + velocity); 
+        Rigidbody bobaRig = currBoba.GetComponent<Rigidbody>();
+        bobaRig.transform.position = transform.position;
+        bobaRig.velocity = velocity;
+
+   }
+
+    /* Calculates the velocity of the boba - responsible for movement
+     * SOURCE - https://unity3d.college/2017/06/30/unity3d-cannon-projectile-ballistics/
+     */
     private Vector3 BallisticVelocity(Vector3 destination, float angle)
     {
         Vector3 dir = destination + cam.transform.up + cam.transform.forward; // get target direction
@@ -90,6 +96,7 @@ public class FireBoba : MonoBehaviour
         return velocity * dir.normalized; // Return a normalized vector.
     }
     
+    /* Calculates charge applied to boba and fixes charging limits */
     public void calculateCharge(float end, float start)
     {
         charge = end - start;
@@ -102,6 +109,7 @@ public class FireBoba : MonoBehaviour
         }
     }
 
+    /* Grows the charge meter */
     IEnumerator ChargeTeaUp() {
         progress = 0;
         while (progress <= 1) {
@@ -110,14 +118,17 @@ public class FireBoba : MonoBehaviour
             yield return null;
         }
     }
+
     public void startCharge()
     {
         StartCoroutine("ChargeTeaUp");
     }
+    
     public void endCharge()
     {
         StopCoroutine("ChargeTeaUp");
     }
+    
     public GameObject getCurrBall()
     {
         return currBoba;

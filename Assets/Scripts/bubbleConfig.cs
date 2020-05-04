@@ -25,8 +25,7 @@ public class bubbleConfig : MonoBehaviour
         //Steps 
         Vector3 currPos; //Where to place the next bubble
 
-       
-
+        //Positions the bubles in a hexagonal pattern and calls method for randomly adding star
         for (int row = 0; row <= 5; ++row)
         {
             currPos = rowStart + stepAcross * 0.5f * (row % 2);

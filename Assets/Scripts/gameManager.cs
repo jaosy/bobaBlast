@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class gameManager : MonoBehaviour
+public class gameManger : MonoBehaviour
 {
     public GameObject bobaFab;
     private GameObject currBoba;

@@ -9,6 +9,7 @@ public class starBehav : MonoBehaviour
     private ParentConstraint parentsCons;
     private ConstraintSource bubbSource = new ConstraintSource();
 
+    /* Constraints for the position, necessary to keep the stars within the bubbles */
     public void setConstraint(GameObject bubble)
     {
        parentsCons = GetComponent<ParentConstraint>();
@@ -21,5 +22,4 @@ public class starBehav : MonoBehaviour
         parentsCons.constraintActive = true;
     }
 
-    //To do: Figure out why it doesnt move with the bubble. Try and fix that. 
 }

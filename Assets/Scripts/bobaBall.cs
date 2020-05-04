@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* Keeps track of whether the boba has been launched and if it hit something 
+ * Required for scoring and collision detection 
+ */
 public class bobaBall : MonoBehaviour
 {
-    
-    private AudioSource source;
     public bool launched;
     public GameObject hitObj;
-
-    /* Destroys Bubble, Star and Boba upon collision.
-     * plays sound effect */
 
     public void Start()
     {
@@ -25,7 +23,6 @@ public class bobaBall : MonoBehaviour
             if(hitObj != null)
             {
                 Debug.Log("Oh! I Just hit something!: " + hitObj.tag);
-               // PlaySound();
             }
             
         }
@@ -36,15 +33,6 @@ public class bobaBall : MonoBehaviour
         launched = true;
         hitObj = obj;
 
-    }
-
-    /* Sets up audio*/
-    public void PlaySound() 
-    {
-        if (source == null) {
-            source = GetComponent<AudioSource>();
-        }
-        source.Play();
     }
 
 }

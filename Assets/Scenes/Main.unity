@@ -554,7 +554,6 @@ GameObject:
   - component: {fileID: 530173825}
   - component: {fileID: 530173824}
   - component: {fileID: 530173823}
-  - component: {fileID: 530173828}
   - component: {fileID: 530173829}
   m_Layer: 0
   m_Name: Bubble Sheet
@@ -652,18 +651,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: -69.731, y: 0, z: 0}
---- !u!114 &530173828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530173822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c81faeaeb411dd4495073d2bc657276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &530173829
 Rigidbody:
   m_ObjectHideFlags: 0

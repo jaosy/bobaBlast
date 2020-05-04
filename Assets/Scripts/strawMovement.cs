@@ -8,7 +8,9 @@ public class strawMovement : MonoBehaviour
     public Vector3 to;
     public float speed = 1.0f;
 
-    // Update is called once per frame
+    /* Called once per frame, moves the straw starting from x axis 
+     * SOURCE: https://answers.unity.com/questions/822484/rotate-object-over-time-and-oscillate.html
+     */
     void Update()
     {
         float t = Mathf.PingPong(Time.time * 0.8f, 0.9f);
@@ -16,13 +18,4 @@ public class strawMovement : MonoBehaviour
        
     }
 
-    private void pause()
-    {
-        Time.timeScale = 0.0f;
-    }
-
-    private void cont()
-    {
-        Time.timeScale = 1.0f;
-    }
 }
