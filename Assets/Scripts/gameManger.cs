@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class gameManager : MonoBehaviour
+
+public class gameManger : MonoBehaviour
 {
     public GameObject bobaFab;
     private GameObject currBoba;
@@ -49,18 +50,18 @@ public class gameManager : MonoBehaviour
      */
     void Update()
     {
-        // foreach(Touch touch in Input.touches) {
-        // if (touch.phase == TouchPhase.Began) {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        foreach(Touch touch in Input.touches) {
+        if (touch.phase == TouchPhase.Began) {
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
             startTime = Time.time;
             chargeBegan = true;
             fire.startCharge();
         }
 
-        // if (touch.phase == TouchPhase.Ended) {
-        if (Input.GetKeyUp(KeyCode.Space) && chargeBegan)
-        {
+        if ((touch.phase == TouchPhase.Ended) && chargeBegan) {
+        // if (Input.GetKeyUp(KeyCode.Space) && chargeBegan)
+        // {
             float endTime = Time.time;
             shoot(endTime, startTime);
         }
@@ -72,7 +73,7 @@ public class gameManager : MonoBehaviour
             updateGame();
             checkGameOver();
         }
-        
+        }
     }
 
     /* Takes in end and start times from charging, passes to FireBoba.cs script
