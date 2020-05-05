@@ -18,12 +18,18 @@ public class bobaBall : MonoBehaviour
 
     public void Update()
     {
+        //Debug.Log("y" + transform.position.y);
+        if (transform.position.y < 1.7) {
+            transform.position = new Vector3(0f,-200f,0f);
+        }
         if (launched)
         {
             if(hitObj != null)
             {
                 Debug.Log("Oh! I Just hit something!: " + hitObj.tag);
             }
+
+            
             
         }
     }
