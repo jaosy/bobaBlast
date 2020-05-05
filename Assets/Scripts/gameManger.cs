@@ -47,17 +47,17 @@ public class gameManger : MonoBehaviour
      */
     void Update()
     {
-       // foreach(Touch touch in Input.touches) {
-       // if (touch.phase == TouchPhase.Began) {
-         if (Input.GetKeyDown(KeyCode.Space))
-         {
+        //foreach(Touch touch in Input.touches) {
+        //if (touch.phase == TouchPhase.Began) {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             startTime = Time.time;
             fire.startCharge();
         }
 
-        //if ((touch.phase == TouchPhase.Ended) ) {
-        if (Input.GetKeyUp(KeyCode.Space))
-         {
+        //if ((touch.phase == TouchPhase.Ended) && chargeBegan) {
+        if (Input.GetKeyUp(KeyCode.Space) && chargeBegan)
+        {
             float endTime = Time.time;
             fire.Shoot(ballManag.newBall(), endTime, startTime);
             fire.endCharge();
@@ -65,7 +65,8 @@ public class gameManger : MonoBehaviour
             // }
 
             checkGameOver();
-      //  }
+        }
+        //}
     }
 
     /* Handles score and lives variables updating depending on collisions */
