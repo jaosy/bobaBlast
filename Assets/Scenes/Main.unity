@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -247,7 +247,6 @@ MonoBehaviour:
   bobaPrefab: {fileID: 273755234}
   chargeMeter: {fileID: 391956268}
   cam: {fileID: 427294786}
-  fired: 0
 --- !u!1 &273755234 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2213235842496136567, guid: 44d202961243f0048879e51e828a3492,
@@ -555,6 +554,7 @@ GameObject:
   - component: {fileID: 530173824}
   - component: {fileID: 530173823}
   - component: {fileID: 530173829}
+  - component: {fileID: 530173828}
   m_Layer: 0
   m_Name: Bubble Sheet
   m_TagString: Wall
@@ -651,6 +651,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: -69.731, y: 0, z: 0}
+--- !u!114 &530173828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530173822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5c7c8ae0ca7f64db6fefda50add244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &530173829
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2066,6 +2078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1391920892}
   - component: {fileID: 1391920891}
+  - component: {fileID: 1391920893}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -2106,6 +2119,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1391920893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391920890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be64638aa8d60440aa8aae642fbe116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bobaFab: {fileID: 273755234}
 --- !u!1 &1506104083
 GameObject:
   m_ObjectHideFlags: 0

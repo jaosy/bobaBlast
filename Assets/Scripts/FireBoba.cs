@@ -24,13 +24,10 @@ public class FireBoba : MonoBehaviour
 
     //Current Game Variables
     private GameObject currBoba;
-    public bool fired;
 
     /* Start is called before the first frame update */
     void Start()
     {
-        currBoba = null;
-        fired = false;
         initialScale = new Vector3(2f, 0.1f, 2f);
         finalScale = new Vector3(2f, 5f, 2f);
         chargeMeter.transform.localScale = initialScale;
@@ -39,18 +36,14 @@ public class FireBoba : MonoBehaviour
     /* Update is called once per frame */
     void Update()
     {
-        if (fired)
-        {
-            fired = false;
-        } 
     }
 
     /* Transfer control from GameManager.cs script to boba shooting */
-    public void Shoot(GameObject ball)
+    public void Shoot(GameObject ball, float end, float start)
     {
         currBoba = ball;
+        calculateCharge(end, start);
         arcDirection();
-        fired = true;
     }
 
     /* Casts a ray that determines the boba's trajectory */
@@ -97,7 +90,7 @@ public class FireBoba : MonoBehaviour
     }
     
     /* Calculates charge applied to boba and fixes charging limits */
-    public void calculateCharge(float end, float start)
+    private void calculateCharge(float end, float start)
     {
         charge = end - start;
 

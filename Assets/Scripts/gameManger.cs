@@ -7,7 +7,7 @@ using TMPro;
 public class gameManger : MonoBehaviour
 {
     public GameObject bobaFab;
-    private GameObject currBoba;
+    private BobaMan ballManag;
 
     private GameObject straw;
     private FireBoba fire;
@@ -20,7 +20,6 @@ public class gameManger : MonoBehaviour
     private int gameScore = 0;
 
     //Game Continutation:
-    bool chargeBegan;
     private bool gameOver;
     public GameObject gameOverScr;
     public Button playAgainbtn;
@@ -32,12 +31,10 @@ public class gameManger : MonoBehaviour
     {
         straw = GameObject.Find("Straw");
         fire = straw.GetComponentInChildren<FireBoba>();
+        ballManag = GetComponent<BobaMan>();
 
         lives.SetText(gameLives.ToString());
         score.SetText(gameScore.ToString());
-
-        currBoba = Instantiate(bobaFab);
-        chargeBegan = false;
 
         gameOverScr.SetActive(false);
         playAgainbtn = gameOverScr.GetComponentInChildren<Button>();
@@ -50,76 +47,57 @@ public class gameManger : MonoBehaviour
      */
     void Update()
     {
-        foreach(Touch touch in Input.touches) {
-        if (touch.phase == TouchPhase.Began) {
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
+       // foreach(Touch touch in Input.touches) {
+       // if (touch.phase == TouchPhase.Began) {
+         if (Input.GetKeyDown(KeyCode.Space))
+         {
             startTime = Time.time;
-            chargeBegan = true;
             fire.startCharge();
         }
 
-        if ((touch.phase == TouchPhase.Ended) && chargeBegan) {
-        // if (Input.GetKeyUp(KeyCode.Space) && chargeBegan)
-        // {
+        //if ((touch.phase == TouchPhase.Ended) ) {
+        if (Input.GetKeyUp(KeyCode.Space))
+         {
             float endTime = Time.time;
-            shoot(endTime, startTime);
+            fire.Shoot(ballManag.newBall(), endTime, startTime);
+            fire.endCharge();
         }
-        // }
+            // }
 
-        if (currBoba.GetComponent<bobaBall>().launched)
-        {
-            checkHit(currBoba.GetComponent<bobaBall>().hitObj);
-            updateGame();
             checkGameOver();
-        }
-        }
-    }
-
-    /* Takes in end and start times from charging, passes to FireBoba.cs script
-     * to handle boba shooting */
-    private void shoot(float end, float start)
-    {
-        fire.calculateCharge(end, start);
-        fire.Shoot(currBoba);
-        fire.endCharge();
-        fire.fired = true;
-        chargeBegan = false;
+      //  }
     }
 
     /* Handles score and lives variables updating depending on collisions */
-    private void checkHit(GameObject hit)
+    public void checkHits(List<GameObject> hits)
     {
-        if (hit != null)
+        foreach(GameObject hit in hits)
         {
-
-            if (currBoba.GetComponent<bobaBall>().hitObj.CompareTag("Bubble"))
+            if (hit.CompareTag("Wall"))
             {
-                if (currBoba.GetComponent<bobaBall>().hitObj.GetComponent<bubble>().containsStar)
+                --gameLives;
+            }
+            if (hit.CompareTag("Bubble"))
+            {
+                if (hit.GetComponent<bubble>().containsStar)
                 {
-                    Debug.Log("Is scoring working?");
-                    gameScore++;
+                    ++gameScore;
                 }
                 else
                 {
-                    gameLives--;
+                    --gameLives;
                 }
             }
-            else
-            {
-                gameLives--;
-            }
         }
+        updateScore();
         Debug.Log("Score: " + gameScore + " Game Lives" + gameLives);
     }
 
     /* Updates UI elements to display the right score and lives left */
-    private void updateGame()
+    private void updateScore()
     {
         lives.SetText(gameLives.ToString());
         score.SetText(gameScore.ToString());
-        Destroy(currBoba);
-        currBoba = Instantiate(bobaFab);
     }
 
     /* Handles game over logic and screen transitions */

@@ -7,32 +7,35 @@ using UnityEngine;
  */
 public class bobaBall : MonoBehaviour
 {
-    public bool launched;
-    public GameObject hitObj;
+    public bool landed;
+    public List<GameObject> hitObj = new List<GameObject>();
 
     public void Start()
     {
-        launched = false;
-        hitObj = null;
+        landed = false;
     }
 
     public void Update()
     {
-        if (launched)
+        if (landed)
         {
-            if(hitObj != null)
+            foreach(GameObject hit in hitObj)
             {
-                Debug.Log("Oh! I Just hit something!: " + hitObj.tag);
+                Debug.Log("Looks like I hit A: " + hit.tag);
             }
             
         }
     }
 
-    public void beenLaunched(GameObject obj)
+    public void hasLanded(GameObject obj)
     {
-        launched = true;
-        hitObj = obj;
-
+        if(obj != null)
+        {
+            GameObject newHit = obj;
+            hitObj.Add(newHit);
+            landed = true;
+        }
+       
     }
 
 }

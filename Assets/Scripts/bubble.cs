@@ -17,12 +17,12 @@ public class bubble : MonoBehaviour
     }
     
     /* Handles what to do after boba collides with it */
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         Debug.Log("Oh no! I was just hit! " + other.gameObject.tag);
         if (other.gameObject.CompareTag("Boba"))
         {
-            other.GetComponent<bobaBall>().beenLaunched(gameObject);
+            other.GetComponent<bobaBall>().hasLanded(this.gameObject);
         }
   
         // Play pickup effect and destroy the star
