@@ -1,0 +1,33 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class bobafaceanimation : MonoBehaviour
+{
+    private int rand;
+    private gameManger game;
+
+    public Sprite[] BobaFaceSprites;
+    
+    public void chargingFace()
+    {
+     GetComponent<SpriteRenderer>().sprite = BobaFaceSprites[0];
+    }
+
+    public void anxiousFace()
+    {
+        GetComponent<SpriteRenderer>().sprite = BobaFaceSprites[2];
+    }
+
+    public void happyFace()
+    {
+        GetComponent<SpriteRenderer>().sprite = BobaFaceSprites[3];
+    }
+
+    public void sadFace()
+    {
+        GetComponent<SpriteRenderer>().sprite = BobaFaceSprites[1];
+    }
+
+}
+

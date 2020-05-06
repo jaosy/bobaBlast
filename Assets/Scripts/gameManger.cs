@@ -56,7 +56,7 @@ public class gameManger : MonoBehaviour
         }
 
         //if ((touch.phase == TouchPhase.Ended) && chargeBegan) {
-        if (Input.GetKeyUp(KeyCode.Space) && chargeBegan)
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             float endTime = Time.time;
             fire.Shoot(ballManag.newBall(), endTime, startTime);
@@ -67,7 +67,7 @@ public class gameManger : MonoBehaviour
             checkGameOver();
         }
         //}
-    }
+    //}
 
     /* Handles score and lives variables updating depending on collisions */
     public void checkHits(List<GameObject> hits)
@@ -104,7 +104,7 @@ public class gameManger : MonoBehaviour
     /* Handles game over logic and screen transitions */
     private void checkGameOver()
     {
-        if(gameLives == 0)
+        if(gameLives <= 0)
         {
             gameOver = true;
             Time.timeScale = 0;

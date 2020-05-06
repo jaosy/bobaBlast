@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1325,6 +1325,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1397,6 +1398,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 18, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009dfac8d48e4f947b3bd0027143ae23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaking: 0
+  shakeAmt: 1
 --- !u!1 &1084388056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,9 +2551,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BobaFaceSprites:
   - {fileID: 21300000, guid: 1a09d588ade63e048b74c5736a6c868a, type: 3}
-  - {fileID: 21300000, guid: 9f1a9e2b21aabcc48af7e6ec0f0d5279, type: 3}
   - {fileID: 21300000, guid: cdcba46ea2d035d488c93e46ff8c9922, type: 3}
   - {fileID: 21300000, guid: f9aa594402a0f92438671831ac541555, type: 3}
+  - {fileID: 21300000, guid: 9f1a9e2b21aabcc48af7e6ec0f0d5279, type: 3}
   - {fileID: 21300000, guid: 243286b07c154304793ea35745079116, type: 3}
   - {fileID: 21300000, guid: 83bdf0ad0731e154a84113f73f49ebc2, type: 3}
 --- !u!1 &1866360480
