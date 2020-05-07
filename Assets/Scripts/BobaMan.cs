@@ -32,6 +32,16 @@ public class BobaMan : MonoBehaviour
         Destroy(landedBall);
     }
 
+    public void removeAll()
+    {
+        foreach(GameObject curr in currBoba)
+        {
+            currBoba.Remove(curr);
+            Destroy(curr);
+        }
+        currBoba.Clear();  
+    }
+
     //Keeps track of the bobas in the air and reports back to game manager when one has landed
     private void Track()
     {

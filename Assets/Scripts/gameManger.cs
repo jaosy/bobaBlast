@@ -15,7 +15,7 @@ public class gameManger : MonoBehaviour
 
     //Scoring Variables
     public TextMeshProUGUI lives;
-    private int gameLives = 10;
+    private int gameLives = 5;
     public TextMeshProUGUI score;
     private int gameScore = 0;
 
@@ -61,7 +61,8 @@ public class gameManger : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             float endTime = Time.time;
-            fire.Shoot(ballManag.newBall(), endTime, startTime);
+            GameObject newBall = ballManag.newBall();
+            fire.Shoot(newBall, endTime, startTime);
             fire.endCharge();
         }
         // }
@@ -85,12 +86,12 @@ public class gameManger : MonoBehaviour
             {
                 if (hit.GetComponent<bubble>().containsStar)
                 {
-                    ++gameScore;
+                    gameScore+= 3;
                     //faceanim.happyFace();
                 }
                 else
                 {
-                    --gameLives;
+                    gameScore++;
                     //faceanim.sadFace();
                 }
             }
@@ -99,6 +100,11 @@ public class gameManger : MonoBehaviour
         Debug.Log("Score: " + gameScore + " Game Lives" + gameLives);
     }
 
+    public void loseLife()
+    {
+        --gameLives;
+        updateScore();
+    }
     /* Updates UI elements to display the right score and lives left */
     private void updateScore()
     {
@@ -115,6 +121,7 @@ public class gameManger : MonoBehaviour
             Time.timeScale = 0;
             gameOverScr.SetActive(true);
             playAgainbtn.onClick.AddListener(resetGame);
+            ballManag.removeAll();
             Debug.Log("Game Over");
         }
     }
@@ -122,7 +129,7 @@ public class gameManger : MonoBehaviour
     /* Resets the game if player chooses to do so */
     private void resetGame()
     {
-        gameLives = 10;
+        gameLives = 5;
         lives.SetText(gameLives.ToString());
         gameScore = 0;
         score.SetText(gameScore.ToString());
