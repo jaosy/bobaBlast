@@ -24,6 +24,8 @@ public class gameManger : MonoBehaviour
     public GameObject gameOverScr;
     public Button playAgainbtn;
 
+    //public bobafaceanimation faceanim;
+
     /* Called before the first frame updates, sets up the scoring system,
      * scripts and instantiates the boab
      */
@@ -62,9 +64,9 @@ public class gameManger : MonoBehaviour
             fire.Shoot(ballManag.newBall(), endTime, startTime);
             fire.endCharge();
         }
-            // }
+        // }
 
-            checkGameOver();
+        checkGameOver();
         }
         //}
     //}
@@ -77,16 +79,19 @@ public class gameManger : MonoBehaviour
             if (hit.CompareTag("Wall"))
             {
                 --gameLives;
+                //faceanim.sadFace();
             }
             if (hit.CompareTag("Bubble"))
             {
                 if (hit.GetComponent<bubble>().containsStar)
                 {
                     ++gameScore;
+                    //faceanim.happyFace();
                 }
                 else
                 {
                     --gameLives;
+                    //faceanim.sadFace();
                 }
             }
         }

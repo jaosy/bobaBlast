@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class bobafaceanimation : MonoBehaviour
 {
-    private int rand;
-    private gameManger game;
 
     public Sprite[] BobaFaceSprites;
     
