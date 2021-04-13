@@ -22,7 +22,7 @@ public class gameManger : MonoBehaviour
     //Game Continutation:
     private bool gameOver;
     public GameObject gameOverScr;
-    public Button playAgainbtn;
+    private Button playAgainbtn;
 
     //public bobafaceanimation faceanim;
 
