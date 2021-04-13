@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* Simple rotation animation for star */
 public class starRotation : MonoBehaviour
 {
-    float x;
-    float y;
-    float z;
-    Vector3 pos;
-
     // Update is called once per frame, rotates the star
     void Update()
     {

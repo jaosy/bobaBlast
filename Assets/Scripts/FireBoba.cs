@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/* Shooting mechanism for the boba - attached to Top of Straw */
+/* Shooting mechanism for the boba - attached to Top of Straw GameObject */
 public class FireBoba : MonoBehaviour
 {
     [SerializeField]
     public GameObject bobaPrefab; 
     public Rigidbody chargeMeter;
     
-    //Charging Parameters
+    // Charging parameters
     private float maxCharge = 1.80f;
     private float minCharge = 1.06f;
     private float angle = 45f;
     private float charge;
 
-    //Charging Visuals
+    // Charging visuals
     private float progress;
     private Vector3 initialScale;
     private Vector3 finalScale; 
     public Camera cam;
 
-    //Current Game Variables
+    // Current game variables
     private GameObject currBoba;
 
-    /* Start is called before the first frame update */
+    /* Set initial and final size of charging meter cylinder */
     void Start()
     {
         initialScale = new Vector3(2f, 0.1f, 2f);
@@ -33,12 +33,7 @@ public class FireBoba : MonoBehaviour
         chargeMeter.transform.localScale = initialScale;
     }
 
-    /* Update is called once per frame */
-    void Update()
-    {
-    }
-
-    /* Transfer control from GameManager.cs script to boba shooting */
+    /* Transfer control from GameManger.cs script to begin boba shooting */
     public void Shoot(GameObject ball, float end, float start)
     {
         currBoba = ball;
@@ -46,22 +41,24 @@ public class FireBoba : MonoBehaviour
         arcDirection();
     }
 
-    /* Casts a ray that determines the boba's trajectory */
+    /* Casts a ray that determines the boba's trajectory,
+     * calls ShootBoba() method passing in position cast ray has hit
+     */
     private void arcDirection()
     {
         Ray ray = new Ray(transform.position, transform.eulerAngles);
-
         RaycastHit hitInfo;
-       if (Physics.Raycast(ray, out hitInfo))
+
+        if (Physics.Raycast(ray, out hitInfo))
         {
            ShootBoba(hitInfo.point);
         }
     }
 
-     /* Sets boba velocity and moves the boba */
+     /* Sets boba Rigidbody's velocity and transform */
     private void ShootBoba(Vector3 point)
     {
-        var velocity = BallisticVelocity(point, angle);
+        var velocity = BallisticVelocity(point, angle); // pass in point hit by RaycastHit
         // Debug.Log("Firing at " + point + " velocity " + velocity); 
         Rigidbody bobaRig = currBoba.GetComponent<Rigidbody>();
         bobaRig.transform.position = transform.position;
@@ -74,8 +71,8 @@ public class FireBoba : MonoBehaviour
      */
     private Vector3 BallisticVelocity(Vector3 destination, float angle)
     {
-        Vector3 dir = destination + cam.transform.up + cam.transform.forward; // get target direction
-        if (dir.z < 0) {
+        Vector3 dir = destination + cam.transform.up + cam.transform.forward; // get target direction, destination is RaycastHit point
+        if (dir.z < 0) { // Fixes bug where boba shoots towards camera if spammed
             dir.z = Mathf.Abs(dir.z);
         }
         float height = dir.y; // get height difference
@@ -85,11 +82,11 @@ public class FireBoba : MonoBehaviour
         dir.y = dist * Mathf.Tan(a); // set dir to the elevation angle.
         dist += height / Mathf.Tan(a); // Correction for small height differences
        
-        float velocity = Mathf.Sqrt(dist * charge * Physics.gravity.magnitude / Mathf.Sin(2 * a));  // Calculate the velocity magnitude
-        return velocity * dir.normalized; // Return a normalized vector.
+        float velocity = Mathf.Sqrt(dist * charge * Physics.gravity.magnitude / Mathf.Sin(2 * a));  // calculate the velocity magnitude
+        return velocity * dir.normalized; // return a normalized velocity vector
     }
     
-    /* Calculates charge applied to boba and fixes charging limits */
+    /* Calculates charge applied to boba and fixes charging limits if exceeded */
     private void calculateCharge(float end, float start)
     {
         charge = end - start;
@@ -102,7 +99,7 @@ public class FireBoba : MonoBehaviour
         }
     }
 
-    /* Grows the charge meter */
+    /* Grows the charge meter using a coroutine and linear interpolation */
     IEnumerator ChargeTeaUp() {
         progress = 0;
         while (progress <= 1) {

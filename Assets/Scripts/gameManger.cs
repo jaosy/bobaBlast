@@ -4,24 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/* Controls game logic
+ */
 public class gameManger : MonoBehaviour
 {
+    // Reference to GameObjects
     public GameObject bobaFab;
-    private BobaMan ballManag;
-    public bobafaceanimation faceanim;
-
     private GameObject straw;
-    private FireBoba fire;
-    private float startTime;
 
-    //Scoring Variables
+    // Reference to other scripts
+    private FireBoba fire; // controls shooting
+    private BobaMan ballManag; // boba script managing what it has hit
+    public bobafaceanimation faceanim; // GameObject representing boba's face
+
+    // Scoring variables
     public TextMeshProUGUI lives;
     private int gameLives = 5;
     public TextMeshProUGUI score;
     private int gameScore = 0;
+    private float startTime;
 
-    //Game Continutation:
-    private bool gameOver;
+    // Game continuation
     public GameObject gameOverScr;
     private Button playAgainbtn;
 
@@ -31,21 +34,25 @@ public class gameManger : MonoBehaviour
     public Button openTutorialBtn;
 
     /* Called before the first frame updates, sets up the scoring system,
-     * scripts and instantiates the boab
+     * scripts and instantiates the boba
      */
     void Start()
     {
+        // set up straw object and FireBoba script attached to it,
+        // set up up BobaMan script
         straw = GameObject.Find("Straw");
-        fire = straw.GetComponentInChildren<FireBoba>();
+        fire = straw.GetComponentInChildren<FireBoba>(); 
         ballManag = GetComponent<BobaMan>();
 
+        // set lives/score text
         lives.SetText(gameLives.ToString());
         score.SetText(gameScore.ToString());
 
+        // begin with game over screen deactivated, set up replay button
         gameOverScr.SetActive(false);
         playAgainbtn = gameOverScr.GetComponentInChildren<Button>();
-        gameOver = false;
 
+        // begin with tutorial screen deactivated, set up close button
         tutorialScr.SetActive(false);
         closeTutorialBtn = tutorialScr.GetComponentInChildren<Button>();
     }
@@ -56,6 +63,7 @@ public class gameManger : MonoBehaviour
      */
     void Update()
     {
+        // add listeners for tutorial buttons
         openTutorialBtn.onClick.AddListener(tutorialMode);
         closeTutorialBtn.onClick.AddListener(closeTutorialMode);
 
@@ -75,14 +83,17 @@ public class gameManger : MonoBehaviour
             fire.Shoot(newBall, endTime, startTime);
             fire.endCharge();
         }
-        // }
+        //}
 
         checkGameOver();
         }
         //}
     //}
 
-    /* Handles score and lives variables updating depending on collisions */
+    /* Handles score and lives variables updating depending on collisions,
+       takes a list of GameObjects representing objects boba has collided
+       with, compares object tags and updates score accordingly
+     */
     public void checkHits(List<GameObject> hits)
     {
         foreach(GameObject hit in hits)
@@ -94,11 +105,13 @@ public class gameManger : MonoBehaviour
             }
             if (hit.CompareTag("Bubble"))
             {
+                // +3 extra points for popping bubbles with stars
                 if (hit.GetComponent<bubble>().containsStar)
                 {
-                    gameScore+= 3;
+                    gameScore+=3;
                     faceanim.smileFace();
                 }
+                // pop a normal bubble
                 else
                 {
                     gameScore++;
@@ -110,11 +123,6 @@ public class gameManger : MonoBehaviour
         // Debug.Log("Score: " + gameScore + " Game Lives" + gameLives);
     }
 
-    public void loseLife()
-    {
-        --gameLives;
-        updateScore();
-    }
     /* Updates UI elements to display the right score and lives left */
     private void updateScore()
     {
@@ -127,16 +135,15 @@ public class gameManger : MonoBehaviour
     {
         if(gameLives <= 0)
         {
-            gameOver = true;
-            Time.timeScale = 0;
-            gameOverScr.SetActive(true);
-            playAgainbtn.onClick.AddListener(resetGame);
-            ballManag.removeAll();
+            Time.timeScale = 0; // temporary pause
+            gameOverScr.SetActive(true); 
+            playAgainbtn.onClick.AddListener(resetGame); // call resetGame method if button clicked
+            ballManag.removeAll(); // remove all bobas
             // Debug.Log("Game Over");
         }
     }
 
-    /* Resets the game if player chooses to do so */
+    /* Resets the game' lives and score variables and text */
     private void resetGame()
     {
         gameLives = 5;
@@ -144,17 +151,18 @@ public class gameManger : MonoBehaviour
         gameScore = 0;
         score.SetText(gameScore.ToString());
 
-        gameOver = false;
-        Time.timeScale = 1;
+        Time.timeScale = 1; // restart time
 
         gameOverScr.SetActive(false);
     }
 
+    /* Set the tutorial screen active */
     private void tutorialMode()
     {
         tutorialScr.SetActive(true);
     }
 
+    /* Set the tutorial screen to not active */
     private void closeTutorialMode()
     {
         tutorialScr.SetActive(false);
