@@ -8,6 +8,7 @@ public class gameManger : MonoBehaviour
 {
     public GameObject bobaFab;
     private BobaMan ballManag;
+    public bobafaceanimation faceanim;
 
     private GameObject straw;
     private FireBoba fire;
@@ -23,8 +24,6 @@ public class gameManger : MonoBehaviour
     private bool gameOver;
     public GameObject gameOverScr;
     private Button playAgainbtn;
-
-    //public bobafaceanimation faceanim;
 
     /* Called before the first frame updates, sets up the scoring system,
      * scripts and instantiates the boab
@@ -80,24 +79,24 @@ public class gameManger : MonoBehaviour
             if (hit.CompareTag("Wall"))
             {
                 --gameLives;
-                //faceanim.sadFace();
+                faceanim.sadFace();
             }
             if (hit.CompareTag("Bubble"))
             {
                 if (hit.GetComponent<bubble>().containsStar)
                 {
                     gameScore+= 3;
-                    //faceanim.happyFace();
+                    faceanim.smileFace();
                 }
                 else
                 {
                     gameScore++;
-                    //faceanim.sadFace();
+                    faceanim.happyFace();
                 }
             }
         }
         updateScore();
-        Debug.Log("Score: " + gameScore + " Game Lives" + gameLives);
+        // Debug.Log("Score: " + gameScore + " Game Lives" + gameLives);
     }
 
     public void loseLife()
@@ -122,7 +121,7 @@ public class gameManger : MonoBehaviour
             gameOverScr.SetActive(true);
             playAgainbtn.onClick.AddListener(resetGame);
             ballManag.removeAll();
-            Debug.Log("Game Over");
+            // Debug.Log("Game Over");
         }
     }
 

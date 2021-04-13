@@ -19,7 +19,7 @@ public class bubble : MonoBehaviour
     /* Handles what to do after boba collides with it */
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Oh no! I was just hit! " + other.gameObject.tag);
+        // Debug.Log("Oh no! I was just hit! " + other.gameObject.tag);
         if (other.gameObject.CompareTag("Boba"))
         {
             other.GetComponent<bobaBall>().hasLanded(this.gameObject);
