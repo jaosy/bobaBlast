@@ -25,6 +25,11 @@ public class gameManger : MonoBehaviour
     public GameObject gameOverScr;
     private Button playAgainbtn;
 
+    // Tutorial screen
+    public GameObject tutorialScr;
+    private Button closeTutorialBtn;
+    public Button openTutorialBtn;
+
     /* Called before the first frame updates, sets up the scoring system,
      * scripts and instantiates the boab
      */
@@ -40,6 +45,9 @@ public class gameManger : MonoBehaviour
         gameOverScr.SetActive(false);
         playAgainbtn = gameOverScr.GetComponentInChildren<Button>();
         gameOver = false;
+
+        tutorialScr.SetActive(false);
+        closeTutorialBtn = tutorialScr.GetComponentInChildren<Button>();
     }
 
     /* Called once per frame, handles input and calls the methods that
@@ -48,6 +56,9 @@ public class gameManger : MonoBehaviour
      */
     void Update()
     {
+        openTutorialBtn.onClick.AddListener(tutorialMode);
+        closeTutorialBtn.onClick.AddListener(closeTutorialMode);
+
         //foreach(Touch touch in Input.touches) {
         //if (touch.phase == TouchPhase.Began) {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -137,5 +148,15 @@ public class gameManger : MonoBehaviour
         Time.timeScale = 1;
 
         gameOverScr.SetActive(false);
+    }
+
+    private void tutorialMode()
+    {
+        tutorialScr.SetActive(true);
+    }
+
+    private void closeTutorialMode()
+    {
+        tutorialScr.SetActive(false);
     }
 }

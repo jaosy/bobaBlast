@@ -4,12 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bubble
   - Star
-  - Wall
+  - Bubble
   - Boba
   - Label
+  - Wall
   - Play Button
+  - Close Tutorial Button
   layers:
   - Default
   - TransparentFX
