@@ -389,7 +389,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   from: {x: 0, y: 0, z: 100}
   to: {x: 0, y: 0, z: 250}
-  speed: 1
 --- !u!136 &219511753
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2706,7 +2705,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   from: {x: 0, y: 0, z: 100}
   to: {x: 0, y: 0, z: 250}
-  speed: 1
 --- !u!136 &1329905106
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4261,6 +4259,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsLocked
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979697252743092220, guid: 28b1616f91a56cd41a25514b7204ed5d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8979697252743092222, guid: 28b1616f91a56cd41a25514b7204ed5d,
         type: 3}

@@ -5,25 +5,24 @@ using UnityEngine.SceneManagement;
 
 /* Shooting mechanism for the boba - attached to Top of Straw GameObject */
 public class FireBoba : MonoBehaviour
-{
-    [SerializeField]
-    public GameObject bobaPrefab; 
-    public Rigidbody chargeMeter;
-    
+{    
     // Charging parameters
     private float maxCharge = 1.80f;
     private float minCharge = 1.06f;
-    private float angle = 45f;
     private float charge;
 
     // Charging visuals
     private float progress;
     private Vector3 initialScale;
     private Vector3 finalScale; 
-    public Camera cam;
+    public Rigidbody chargeMeter;
 
     // Current game variables
     private GameObject currBoba;
+
+    // Shooting
+    public Camera cam;
+    private float angle = 45f;
 
     /* Set initial and final size of charging meter cylinder */
     void Start()
