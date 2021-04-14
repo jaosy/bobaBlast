@@ -4,7 +4,7 @@ using UnityEngine;
 
 /* Responsible for instantiating the Boba prefab,
  * tracking all current boba instances in a list and operations to 
- * remove them. Linked to score check/update function of gameManger.cs 
+ * remove them. Linked to score check/update function of GameLogic.cs 
  */
 public class BobaManager : MonoBehaviour
 {

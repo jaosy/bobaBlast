@@ -67,28 +67,28 @@ public class GameLogic : MonoBehaviour
         openTutorialBtn.onClick.AddListener(tutorialMode);
         closeTutorialBtn.onClick.AddListener(closeTutorialMode);
 
-        //foreach(Touch touch in Input.touches) {
-        //if (touch.phase == TouchPhase.Began) {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+        foreach(Touch touch in Input.touches) {
+        if (touch.phase == TouchPhase.Began) {
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
             startTime = Time.time;
             fire.startCharge();
         }
 
-        //if ((touch.phase == TouchPhase.Ended) && chargeBegan) {
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
+        if ((touch.phase == TouchPhase.Ended) ) {
+        //f (Input.GetKeyUp(KeyCode.Space))
+        //{
             float endTime = Time.time;
             GameObject newBall = ballManag.newBall();
             fire.Shoot(newBall, endTime, startTime);
             fire.endCharge();
-        }
         //}
+        }
 
         checkGameOver();
-        }
         //}
-    //}
+        }
+    }
 
     /* Handles score and lives variables updating depending on collisions,
        takes a list of GameObjects representing objects boba has collided

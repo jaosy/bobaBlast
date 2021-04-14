@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Home_Scr.unity
+  - enabled: 0
+    path: Assets/Graphical Effects/JMO Assets/Cartoon FX Easy Editor/Editor/Home_Scr.unity
     guid: 331ab1f38e3e26947ada4e9c7b47abdb
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/Scenes/GameOver.unity
+  - enabled: 0
+    path: Assets/Graphical Effects/JMO Assets/Cartoon FX Easy Editor/Editor/GameOver.unity
     guid: 5152438ebab4db842a9c9082777693e9
   m_configObjects: {}
