@@ -5,7 +5,7 @@ using UnityEngine;
 /* Keeps track of whether the boba has been launched and if it hit something; 
  * is attached to Boba prefab, required for scoring and collision detection 
  */
-public class bobaBall : MonoBehaviour
+public class BobaLanding : MonoBehaviour
 {
     public bool landed;
     public List<GameObject> hitObj = new List<GameObject>(); 

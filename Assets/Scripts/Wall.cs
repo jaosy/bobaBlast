@@ -9,7 +9,7 @@ public class Wall : MonoBehaviour
     {
         if (other.CompareTag("Boba"))
         {
-            other.GetComponent<bobaBall>().hasLanded(gameObject);
+            other.GetComponent<BobaLanding>().hasLanded(gameObject);
         }
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.Animations;
  * A Parent Constraint moves and rotates a GameObject as if it is
  * the child of another GameObject in the Hierarchy window.
  */
-public class starBehav : MonoBehaviour
+public class StarConstraint : MonoBehaviour
 {
     private ParentConstraint parentsCons; 
     private ConstraintSource bubbSource = new ConstraintSource();

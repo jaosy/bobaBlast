@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /* Behavior of Bubble GameObject */
-public class bubble : MonoBehaviour
+public class Bubble : MonoBehaviour
 {
     public GameObject pickUpEffect; // SOURCE: https://assetstore.unity.com/packages/vfx/particles/cartoon-fx-free-109565
     public GameObject star; // SOURCE: https://assetstore.unity.com/packages/3d/environments/glowy-space-2d-toon-parallax-116509
@@ -23,7 +23,7 @@ public class bubble : MonoBehaviour
         // Debug.Log("Oh no! I was just hit! " + other.gameObject.tag);
         if (other.gameObject.CompareTag("Boba"))
         {
-            other.GetComponent<bobaBall>().hasLanded(this.gameObject);
+            other.GetComponent<BobaLanding>().hasLanded(this.gameObject);
         }
   
         // Play pickup effect at position of star and destroy the star
@@ -54,7 +54,7 @@ public class bubble : MonoBehaviour
         {
             instStar = Instantiate(star, pos, Quaternion.identity);
             containsStar = true;
-            instStar.GetComponent<starBehav>().setConstraint(gameObject); // Makes the bubble the star's parent constraint
+            instStar.GetComponent<StarConstraint>().setConstraint(gameObject); // Makes the bubble the star's parent constraint
         }
         else
         {

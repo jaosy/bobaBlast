@@ -6,15 +6,15 @@ using UnityEngine;
  * tracking all current boba instances in a list and operations to 
  * remove them. Linked to score check/update function of gameManger.cs 
  */
-public class BobaMan : MonoBehaviour
+public class BobaManager : MonoBehaviour
 {
     public GameObject bobaFab;
     private List<GameObject> currBoba = new List<GameObject>(); // all bobas currently in the air
-    private gameManger gameControl;
+    private GameLogic gameControl;
 
     public void Start()
     {
-        gameControl = GameObject.Find("Game Manager").GetComponent<gameManger>(); // associate to gameManger.cs
+        gameControl = GameObject.Find("Game Manager").GetComponent<GameLogic>(); // associate to GameLogic.cs
     }
 
     /* Creates instance of Boba prefab, add to list of all bobas*/
@@ -57,8 +57,8 @@ public class BobaMan : MonoBehaviour
         foreach(GameObject curr in currBoba)
         {
             // Check landed boolean of each instance of boba
-            if (curr.GetComponent<bobaBall>().landed){
-                List<GameObject> allHits = curr.GetComponent<bobaBall>().hitObj; // all GameObjects collided with
+            if (curr.GetComponent<BobaLanding>().landed){
+                List<GameObject> allHits = curr.GetComponent<BobaLanding>().hitObj; // all GameObjects collided with
                 gameControl.checkHits(allHits); 
                 removeBall(curr);
             }

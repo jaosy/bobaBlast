@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 
 /* Sets up the bubble wrap sheet */
-public class bubbleConfig : MonoBehaviour
+public class BubbleWrapSheet : MonoBehaviour
 {
     public float bubbleSpacing = 1.1f;
     public GameObject star;
@@ -31,7 +31,7 @@ public class bubbleConfig : MonoBehaviour
             for (int col = row % 2; col <= 7; ++col)
             {
                 GameObject instBubble = Instantiate(bubble, currPos, Quaternion.identity); 
-                instBubble.GetComponent<bubble>().addStar();
+                instBubble.GetComponent<Bubble>().addStar();
 
                 currPos += stepAcross; // increment horizontal position
             }

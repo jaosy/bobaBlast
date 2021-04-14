@@ -6,7 +6,7 @@ using UnityEngine;
  * with linear interpolation applied to tranform's rotation 
  * component (represented by Euler angles)
  */
-public class strawMovement : MonoBehaviour
+public class StrawMovement : MonoBehaviour
 {
     public Vector3 from; // set in Inspector
     public Vector3 to;

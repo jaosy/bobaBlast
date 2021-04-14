@@ -5,7 +5,7 @@ using UnityEngine;
 /* Changes SpriteRenderer attached to bobaface GameObjct to render
  * sprite of boba face at specified array
  */
-public class bobafaceanimation : MonoBehaviour
+public class BobaFaceAnimation : MonoBehaviour
 {
     public Sprite[] BobaFaceSprites;
     

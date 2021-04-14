@@ -6,7 +6,7 @@ using TMPro;
 
 /* Controls game logic
  */
-public class gameManger : MonoBehaviour
+public class GameLogic : MonoBehaviour
 {
     // Reference to GameObjects
     public GameObject bobaFab;
@@ -14,8 +14,8 @@ public class gameManger : MonoBehaviour
 
     // Reference to other scripts
     private FireBoba fire; // controls shooting
-    private BobaMan ballManag; // boba script managing what it has hit
-    public bobafaceanimation faceanim; // GameObject representing boba's face
+    private BobaManager ballManag; // boba script managing what it has hit
+    public BobaFaceAnimation faceanim; // GameObject representing boba's face
 
     // Scoring variables
     public TextMeshProUGUI lives;
@@ -39,10 +39,10 @@ public class gameManger : MonoBehaviour
     void Start()
     {
         // set up straw object and FireBoba script attached to it,
-        // set up up BobaMan script
+        // set up up BobaManager script
         straw = GameObject.Find("Straw");
         fire = straw.GetComponentInChildren<FireBoba>(); 
-        ballManag = GetComponent<BobaMan>();
+        ballManag = GetComponent<BobaManager>();
 
         // set lives/score text
         lives.SetText(gameLives.ToString());
@@ -106,7 +106,7 @@ public class gameManger : MonoBehaviour
             if (hit.CompareTag("Bubble"))
             {
                 // +3 extra points for popping bubbles with stars
-                if (hit.GetComponent<bubble>().containsStar)
+                if (hit.GetComponent<Bubble>().containsStar)
                 {
                     gameScore+=3;
                     faceanim.smileFace();

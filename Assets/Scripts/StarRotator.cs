@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /* Simple rotation animation for star */
-public class starRotation : MonoBehaviour
+public class StarRotator : MonoBehaviour
 {
     // Update is called once per frame, rotates the star
     void Update()
